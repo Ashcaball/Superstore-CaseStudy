@@ -25,6 +25,12 @@ count(distinct(PropertyID)) AS UniqueID
 FROM `robust-team-356223.SuperStore_Data.OrderDetails`;
 
 /* Which product category has maximum products?  */
+
+SELECT ProductCategory, count(ProductName) AS Products
+FROM `robust-team-356223.SuperStore_Data.Products` 
+GROUP BY 1
+ORDER BY 2 desc;
+
 /* Which state has most stores present? */
 
 SELECT PropertyState ,count(Prop_ID) as Locations
