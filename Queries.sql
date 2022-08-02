@@ -70,3 +70,15 @@ left join `robust-team-356223.SuperStore_Data.PropertyInfo` as pi
 group by  pi.PropertyCity
 order by Sales desc
 LIMIT 5;
+
+/* Top 5 Products sold at each store */ 
+
+SELECT
+ pi.Prop_ID, pi.PropertyCity, P.ProductName, sum(O.Quantity) AS AmountSold
+FROM `robust-team-356223.SuperStore_Data.OrderDetails` AS O
+left join `robust-team-356223.SuperStore_Data.Products`  as P 
+  on O.ProductID = P.ProductID
+left join `robust-team-356223.SuperStore_Data.PropertyInfo` as pi 
+  on O.PropertyID = pi.Prop_ID
+GROUP BY  1, 2, 3
+ORDER BY 2, 4 desc
