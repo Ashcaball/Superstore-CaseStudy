@@ -89,14 +89,19 @@ LIMIT 5;
 
 Result: 1. Kansas City, 2. Chicago, 3. Los Angeles, 4. New Orleans, 5. Boston
 
-/* Top 5 Products sold at each store */ 
+/* Top 5 Products sold in the Arlington location? */ 
 
 SELECT
- pi.Prop_ID, pi.PropertyCity, P.ProductName, sum(O.Quantity) AS AmountSold
-FROM `robust-team-356223.SuperStore_Data.OrderDetails` AS O
-left join `robust-team-356223.SuperStore_Data.Products`  as P 
-  on O.ProductID = P.ProductID
-left join `robust-team-356223.SuperStore_Data.PropertyInfo` as pi 
-  on O.PropertyID = pi.Prop_ID
-GROUP BY  1, 2, 3
-ORDER BY 2, 4 desc
+select 
+ pi.PropertyCity
+, p.ProductName
+, sum(o.Quantity * p.Price) as Sales 
+from tr_orderdetails as o
+left join tr_products as p on o.ProductID = p.ProductID
+left join tr_propertyinfo as pi on o.PropertyID = pi.`Prop ID`
+where pi.PropertyCity = 'Arlington'
+group by pi.PropertyCity, p.ProductName
+order by Sales desc
+LIMIT 5;
+
+Results: 1. Sofa, 2. Chest of Drawers 3. Armoire 4. Coffe Maker 5. Portable Drill
