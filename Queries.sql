@@ -104,4 +104,4 @@ group by pi.PropertyCity, p.ProductName
 order by Sales desc
 LIMIT 5;
 
-Results: 1. Sofa, 2. Chest of Drawers 3. Armoire 4. Coffe Maker 5. Portable Drill
+Result: 1. Sofa, 2. Chest of Drawers 3. Armoire 4. Coffe Maker 5. Portable Drill
